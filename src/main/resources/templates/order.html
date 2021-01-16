@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zamowienie</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <!--            <svg class="bd-placeholder-img" width="100%" height="300px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="../static/image/pexels-kaboompics-com-6305.jpg" th:src="@{/image/pexels-kaboompics-com-6305.jpg}"
+                 class="center">
+            <div class="container">
+                <div class="carousel-caption text-start underText">
+                    <h1 class="text">Food</h1>
+                    <p class="text">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non
+                        mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="../static/image/pexels-pixabay-54455.jpg" th:src="@{/image/pexels-pixabay-54455.jpg}"
+                 class="center">
+            <div class="container">
+                <div class="carousel-caption underText">
+                    <h1 class="text">Another example headline.</h1>
+                    <p class="text">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non
+                        mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <!--            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
+            <img src="../static/image/pexels-pixabay-326279.jpg" th:src="@{/image/pexels-pixabay-326279.jpg}"
+                 class="center">
+            <div class="container">
+                <div class="carousel-caption text-end underText">
+                    <h1 class="text">One more for good measure.</h1>
+                    <p class="text">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non
+                        mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+<div class="media col-6 offset-3">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Cena</th>
+        </tr>
+        </thead>
+        <tr th:each="order:${orders}">
+            <th scope="row" th:text="${orderStat.index + 1}">1</th>
+            <td th:text="${order.name}">Pizza</td>
+            <td th:text="${order.getPrice() + ' zł'}">25 zł</td>
+        </tr>
+    </table>
+    <div class="font-weight-bold">
+        <p style="font-weight: bold" class="text-center">Do zapłaty: <span th:text="${sum} + ' zł'"> 50 zł</span></p>
+    </div>
+
+    <form class="text-right" action="#" th:action="@{/order/realize}" method="post">
+        <div class="form-group mb-2">
+            <label for="addres">Adres:</label>
+            <input id="addres" name="addres" th:type="text" type="text" placeholder="ul. Kapłanów 45, 34-600 Kraków"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefon:</label>
+            <input id="phone" name="phone" th:type="numbers" type="number" placeholder="888444222" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Zamów</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+</html>

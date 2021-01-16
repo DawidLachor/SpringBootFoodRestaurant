@@ -1,0 +1,17 @@
+.center {
+    object-fit:cover;
+    height: 300px;
+    width: 100%;
+}
+
+.underText{
+    background: rgba(0,0,0,0.5);
+}
+
+.left{
+    float: left;
+}
+
+.text{
+    margin: 10px;
+}
