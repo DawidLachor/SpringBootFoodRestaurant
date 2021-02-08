@@ -35,10 +35,11 @@ public class OrderController {
         if (bindingResult.hasErrors()){
             List<ObjectError> errors = bindingResult.getAllErrors();
             errors.forEach(err -> System.out.println(err.getDefaultMessage()));
-
             addModel(model, order);
             return "order";
         }else {
+            order.setItems(clientOrder.getItemList());
+            order.setStatus(OrderStatus.NEW);
             orderRepository.save(order);
             clientOrder.clear();
             return "realize";
@@ -59,13 +60,13 @@ public class OrderController {
         return "order";
     }
     private void addModel(Model model, Order order){
-        model.addAttribute("orders", clientOrder.getOrder().getItems());
+        model.addAttribute("orders", clientOrder.getItemList());
         model.addAttribute("sum", sum());
         model.addAttribute("finishOrder", order);
     }
 
     private BigDecimal sum(){
-        return clientOrder.getOrder().getItems().stream()
+        return clientOrder.getItemList().stream()
                 .filter(Objects::nonNull)
                 .map(Item::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

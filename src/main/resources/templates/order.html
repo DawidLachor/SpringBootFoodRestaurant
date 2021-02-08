@@ -86,12 +86,12 @@
             <label for="addres">Adres:</label>
             <input id="addres" name="addres" th:type="text" th:field="*{address}" type="text" placeholder="ul. Kapłanów 45, 34-600 Kraków"
                    class="form-control">
-            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Brak adresu</p>
+            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger">Brak adresu</p>
         </div>
         <div class="form-group">
             <label for="phone">Telefon:</label>
             <input id="phone" name="phone" th:type="number" th:field="*{telephone}" type="number" placeholder="888444222" class="form-control">
-            <p th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}">Błedny numer telefonu</p>
+            <p th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}" class="text-danger">Błedny numer telefonu</p>
         </div>
         <button type="submit" class="btn btn-primary mt-4">Zamów</button>
     </form>

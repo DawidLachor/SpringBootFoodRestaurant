@@ -24,7 +24,7 @@ public class ApplicationController {
     public String home(Model model) {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
-        model.addAttribute("orders", clientOrder.getOrder().getItems());
+        model.addAttribute("orders", clientOrder.getItemList());
         return "ide";
     }
 

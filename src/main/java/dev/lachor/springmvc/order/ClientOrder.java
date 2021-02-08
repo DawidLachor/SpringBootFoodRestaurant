@@ -4,25 +4,23 @@ import dev.lachor.springmvc.item.Item;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @SessionScope
 public class ClientOrder {
-    private Order order;
-
-    public ClientOrder() {
-        clear();
-    }
-
-    public Order getOrder(){
-        return order;
-    }
+    private List<Item> itemList = new ArrayList<>();
 
     public void add(Item item){
-        order.getItems().add(item);
+        itemList.add(item);
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
     }
 
     public void clear(){
-        order = new Order();
-        order.setStatus(OrderStatus.NEW);
+        itemList.clear();
     }
 }
