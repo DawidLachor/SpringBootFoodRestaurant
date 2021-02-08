@@ -5,6 +5,7 @@ import dev.lachor.springmvc.item.Item;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,23 +18,15 @@ public class Order {
     @JoinTable(name = "order_item",
     joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
     @NotEmpty(message = "{dev.lachor.springmvc.order.Order.Address}")
     private String address;
-    @NotEmpty(message = "{dev.lachor.springmvc.order.Order.Telephone.NotEmpty}")
     @Size(min = 9, max = 9, message = "{dev.lachor.springmvc.order.Order.Telephone.size}")
     private String telephone;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     public Order() {
-    }
-
-    public Order(List<Item> items, String address, String telephone, OrderStatus status) {
-        this.items = items;
-        this.address = address;
-        this.telephone = telephone;
-        this.status = status;
     }
 
     public Long getId() {
