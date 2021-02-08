@@ -3,11 +3,8 @@ package dev.lachor.springmvc.order;
 import dev.lachor.springmvc.item.Item;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,12 +17,11 @@ public class Order {
     @JoinTable(name = "order_item",
     joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
-    @NotEmpty
     private List<Item> items;
-    @NotEmpty
+    @NotEmpty(message = "{dev.lachor.springmvc.order.Order.Address}")
     private String address;
-    @NotEmpty
-    @Size(min = 9, max = 9)
+    @NotEmpty(message = "{dev.lachor.springmvc.order.Order.Telephone.NotEmpty}")
+    @Size(min = 9, max = 9, message = "{dev.lachor.springmvc.order.Order.Telephone.size}")
     private String telephone;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

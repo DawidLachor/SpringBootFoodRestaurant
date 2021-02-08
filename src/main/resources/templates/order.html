@@ -81,15 +81,17 @@
         <p style="font-weight: bold" class="text-center">Do zapłaty: <span th:text="${sum} + ' zł'"> 50 zł</span></p>
     </div>
 
-    <form class="text-right" action="#" th:action="@{/order/realize}" method="post">
+    <form class="text-right" action="#" th:action="@{/order}" th:object="${finishOrder}" method="post">
         <div class="form-group mb-2">
             <label for="addres">Adres:</label>
-            <input id="addres" name="addres" th:type="text" type="text" placeholder="ul. Kapłanów 45, 34-600 Kraków"
+            <input id="addres" name="addres" th:type="text" th:field="*{address}" type="text" placeholder="ul. Kapłanów 45, 34-600 Kraków"
                    class="form-control">
+            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Brak adresu</p>
         </div>
         <div class="form-group">
             <label for="phone">Telefon:</label>
-            <input id="phone" name="phone" th:type="numbers" type="number" placeholder="888444222" class="form-control">
+            <input id="phone" name="phone" th:type="number" th:field="*{telephone}" type="number" placeholder="888444222" class="form-control">
+            <p th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}">Błedny numer telefonu</p>
         </div>
         <button type="submit" class="btn btn-primary">Zamów</button>
     </form>
