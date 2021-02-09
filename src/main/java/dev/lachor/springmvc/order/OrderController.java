@@ -2,6 +2,7 @@ package dev.lachor.springmvc.order;
 
 import dev.lachor.springmvc.item.Item;
 import dev.lachor.springmvc.item.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,10 +25,14 @@ public class OrderController {
     private ItemRepository itemRepository;
     private ClientOrder clientOrder;
 
+    @Autowired
     public OrderController(OrderRepository orderRepository, ItemRepository itemRepository, ClientOrder clientOrder) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
         this.clientOrder = clientOrder;
+    }
+
+    public OrderController() {
     }
 
     @PostMapping("/order")

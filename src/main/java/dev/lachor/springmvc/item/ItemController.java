@@ -1,5 +1,6 @@
 package dev.lachor.springmvc.item;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,12 @@ public class ItemController {
 
     private ItemRepository itemRepository;
 
+    @Autowired
     public ItemController(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
+    }
+
+    public ItemController() {
     }
 
     @GetMapping("/dinner/{dinner}")
