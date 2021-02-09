@@ -13,16 +13,16 @@
      class="center">
 <div class="media col-6 offset-3 mt-4">
     <div class="row">
-        <a class="col-3 text-center" th:href="@{/panel/panel(status=new)}">
+        <a class="col-3 text-center" th:href="@{/panel/orders(status=${T(dev.lachor.springmvc.order.OrderStatus).NEW.name()})}">
             <button class="btn btn-warning">Nowe</button>
         </a>
-        <a class="col-3 text-center" th:href="@{/panel/panel(status=in_progress)}">
+        <a class="col-3 text-center" th:href="@{/panel/orders(status=${T(dev.lachor.springmvc.order.OrderStatus).IN_PROGRESS.name()})}">
             <button class="btn btn-primary">W trakcie</button>
         </a>
-        <a class="col-3 text-center" th:href="@{/panel/panel(status=complete)}">
+        <a class="col-3 text-center" th:href="@{/panel/orders(status=${T(dev.lachor.springmvc.order.OrderStatus).COMPLETE.name()})}">
             <button class="btn btn-success">Zrealizowane</button>
         </a>
-        <a class="col-3 text-center" th:href="@{/panel/panel}">
+        <a class="col-3 text-center" th:href="@{/panel/orders}">
             <button class="btn btn-info">Wszystkie</button>
         </a>
     </div>
@@ -41,7 +41,7 @@
             <td th:text="${order.getAddress()}">Męcina 721</td>
             <td th:text="${order.getTelephone()}">732753964</td>
             <td th:text="${order.getStatus()}">Nowy</td>
-            <td><a th:href="@{${order.getId()}}"><button class="btn btn-primary">Edycja</button></a></td>
+            <td><a th:href="@{|/panel/orders/${order.getId()}|}"><button class="btn btn-primary">Edycja</button></a></td>
         </tr>
     </table>
 </div>

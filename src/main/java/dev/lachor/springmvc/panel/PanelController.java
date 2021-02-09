@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/panel/panel")
+@RequestMapping("/panel/orders")
 public class PanelController {
 
     private OrderRepository orderRepository;
@@ -33,14 +32,14 @@ public class PanelController {
     @GetMapping
     public String panel(Model model, @RequestParam(required = false, defaultValue = "all") String status){
         model.addAttribute("orders", findOrders(status));
-        return "panel/panel";
+        return "/panel/orders";
     }
 
-
     private List<Order> findOrders(String status){
-        List<Order> orders = new ArrayList<>();
+        List<Order> orders;
         if (status.equals("all")){
             orders = orderRepository.findAll();
+            orders.sort(Order::compareTo);
         } else {
             orders = orderRepository.findByStatus(OrderStatus.valueOf(status.toUpperCase()));
         }

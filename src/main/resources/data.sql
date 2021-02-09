@@ -19,7 +19,8 @@ insert into client_order(id, address, telephone, status) VALUES
 (3, 'Krakowska 88/16, 51-515 Wrocław', '666234123', 'IN_PROGRESS'),
 (4, 'Centralna 8/12, 55-100 Wrocław', '598787999', 'IN_PROGRESS'),
 (5, 'Dworcowa 33, 51-200 Wrocław', '600700900', 'COMPLETE'),
-(6, 'Krucza 66/4, 53-300 Wrocław', '696787898', 'COMPLETE');
+(6, 'Krucza 66/4, 53-300 Wrocław', '696787898', 'COMPLETE'),
+(7, 'Zakrzewskiego 23/5, 50-225 Wrocław', '888777666', 'NEW');
 insert into order_item (order_id, item_id) values
 (1, 1),
 (1, 2),
@@ -35,4 +36,5 @@ insert into order_item (order_id, item_id) values
 (5, 3),
 (5, 4),
 (6, 4),
-(6, 4);
+(6, 4),
+(7, 2);

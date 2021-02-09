@@ -1,6 +1,6 @@
 package dev.lachor.springmvc.order;
 
-public enum OrderStatus {
+public enum OrderStatus{
     NEW,
     IN_PROGRESS,
     COMPLETE

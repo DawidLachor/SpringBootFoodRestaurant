@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "client_order")
-public class Order {
+public class Order implements Comparable<Order>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -67,5 +67,10 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public int compareTo(Order o) {
+        return Integer.compare(this.status.ordinal(), o.getStatus().ordinal());
     }
 }
