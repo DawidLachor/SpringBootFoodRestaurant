@@ -40,7 +40,11 @@
             <th scope="row" th:text="${order.getId()}">1</th>
             <td th:text="${order.getAddress()}">Męcina 721</td>
             <td th:text="${order.getTelephone()}">732753964</td>
-            <td th:text="${order.getStatus()}">Nowy</td>
+            <div th:switch="${order.getStatus()}">
+                <td th:case="${T(dev.lachor.springmvc.order.OrderStatus).NEW}">Nowe</td>
+                <td th:case="${T(dev.lachor.springmvc.order.OrderStatus).IN_PROGRESS}">Realizowane</td>
+                <td th:case="${T(dev.lachor.springmvc.order.OrderStatus).COMPLETE}">Zakończone</td>
+            </div>
             <td><a th:href="@{|/panel/orders/${order.getId()}|}"><button class="btn btn-primary">Edycja</button></a></td>
         </tr>
     </table>
