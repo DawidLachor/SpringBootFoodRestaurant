@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "client_order")
 public class Order implements Comparable<Order>{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
     @JoinTable(name = "order_item",
