@@ -63,7 +63,7 @@ public class EditController {
         return items.stream()
                 .filter(Objects::nonNull)
                 .map(Item::getPrice)
-                .reduce(BigDecimal.ONE, BigDecimal::add);
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }
