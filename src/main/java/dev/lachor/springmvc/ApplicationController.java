@@ -25,7 +25,7 @@ public class ApplicationController {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
         model.addAttribute("orders", clientOrder.getItemList());
-        return "ide";
+        return "index";
     }
 
 }
