@@ -1,9 +1,9 @@
 #Spring Boot Food Restaurant
 This program is web application for order food. We can order food and manage orders. The application is built on Spring Boot and database is PostgreSQL.
 
-![Index page](https://mega.nz/file/Pw8AjBYa#ZjcCbvQwIUEaWgPfLDCTM16SwsEzswJyeONoiCUer_4)
+![Index page](src/main/resources/static/image/IndexPage.png)
 
-![Order page](https://mega.nz/file/7h12iJ6R#42O9ZMQd1Uv79DUWUglQN4GlGeo7rC1zTJjyJd2OFUE)
+![Order page](src/main/resources/static/image/OrdersPage.png)
 
 ##Table of contents
 * [Setup](#setup)
