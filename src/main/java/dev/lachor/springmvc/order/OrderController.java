@@ -23,13 +23,13 @@ public class OrderController {
 
     private OrderRepository orderRepository;
     private ItemRepository itemRepository;
-    private ClientOrder clientOrder;
+
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, ItemRepository itemRepository, ClientOrder clientOrder) {
+    public OrderController(OrderRepository orderRepository, ItemRepository itemRepository) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
-        this.clientOrder = clientOrder;
+
     }
 
     public OrderController() {
@@ -43,10 +43,10 @@ public class OrderController {
             addModel(model, order);
             return "order";
         }else {
-            order.setItems(clientOrder.getItemList());
+            order.setItems(ClientOrder.getInstance().getItemList());
             order.setStatus(OrderStatus.NEW);
             orderRepository.save(order);
-            clientOrder.clear();
+            ClientOrder.getInstance().clear();
             return "realize";
         }
 
@@ -54,7 +54,7 @@ public class OrderController {
     @GetMapping("/{add}")
     public String add(@PathVariable(name = "add") String dinner) {
         Optional<Item> item = itemRepository.findItemByNameIgnoreCase(dinner.replaceAll("-", " "));
-        item.ifPresent(item1 -> clientOrder.add(item1));
+        item.ifPresent(item1 -> ClientOrder.getInstance().add(item1));
         return "redirect:/";
     }
 
@@ -65,13 +65,13 @@ public class OrderController {
         return "order";
     }
     private void addModel(Model model, Order order){
-        model.addAttribute("orders", clientOrder.getItemList());
+        model.addAttribute("orders", ClientOrder.getInstance().getItemList());
         model.addAttribute("sum", sum());
         model.addAttribute("finishOrder", order);
     }
 
     private BigDecimal sum(){
-        return clientOrder.getItemList().stream()
+        return ClientOrder.getInstance().getItemList().stream()
                 .filter(Objects::nonNull)
                 .map(Item::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

@@ -13,18 +13,16 @@ import java.util.List;
 public class ApplicationController {
 
     private ItemRepository itemRepository;
-    private ClientOrder clientOrder;
 
-    public ApplicationController(ItemRepository itemRepository, ClientOrder clientOrder) {
+    public ApplicationController(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-        this.clientOrder = clientOrder;
     }
 
     @GetMapping("/")
     public String home(Model model) {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
-        model.addAttribute("orders", clientOrder.getItemList());
+        model.addAttribute("orders", ClientOrder.getInstance().getItemList());
         return "index";
     }
 
